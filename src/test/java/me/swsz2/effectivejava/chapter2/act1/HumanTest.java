@@ -12,12 +12,15 @@ class HumanTest {
 
   @Test
   void testCreate() {
+
     final Human women = Human.create(Human.Sex.FEMALE);
+
     Assertions.assertNotNull(women);
     Assertions.assertInstanceOf(Women.class, women);
     Assertions.assertEquals(Human.Sex.FEMALE, ((Women) women).getSex());
 
     final Human man = Human.create(Human.Sex.MALE);
+
     Assertions.assertNotNull(man);
     Assertions.assertInstanceOf(Man.class, man);
     Assertions.assertEquals(Human.Sex.MALE, ((Man) man).getSex());
@@ -25,6 +28,7 @@ class HumanTest {
 
   @Test
   void testFrom() {
+
     final Human womenFrom = Human.create(Human.Sex.FEMALE);
     final Human womenInstance = Human.getWomenInstance();
 
@@ -46,6 +50,7 @@ class HumanTest {
 
   @Test
   void testInstance() {
+
     final Human womenCreate = Human.create(Human.Sex.FEMALE);
     final Human womenInstance = Human.newWomenInstance();
 
@@ -63,5 +68,20 @@ class HumanTest {
     Assertions.assertInstanceOf(Man.class, manCreate);
     Assertions.assertInstanceOf(Man.class, manInstance);
     Assertions.assertNotEquals(manCreate, manInstance);
+  }
+
+  @Test
+  void testEat() {
+
+    final Human womenInstance = Human.getWomenInstance();
+    final Human manInstance = Human.getManInstance();
+
+    Assertions.assertNotNull(womenInstance);
+    Assertions.assertNotNull(manInstance);
+    Assertions.assertInstanceOf(Women.class, womenInstance);
+    Assertions.assertInstanceOf(Man.class, manInstance);
+
+    womenInstance.eat();
+    manInstance.eat();
   }
 }
