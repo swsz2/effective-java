@@ -18,5 +18,7 @@ class PromotionTest {
     System.out.println("constructor = " + constructor);
     System.out.println("builder = " + builder);
 
+    // constructor = Promotion(student=true, sat=false, ministry=true, recommender=true)
+    // builder = Promotion(student=true, sat=false, ministry=true, recommender=true)
   }
 }
