@@ -24,6 +24,27 @@ class HumanTest {
   }
 
   @Test
+  void testFrom() {
+    final Human womenFrom = Human.create(Human.Sex.FEMALE);
+    final Human womenInstance = Human.getWomenInstance();
+
+    Assertions.assertNotNull(womenFrom);
+    Assertions.assertNotNull(womenInstance);
+    Assertions.assertInstanceOf(Women.class, womenFrom);
+    Assertions.assertInstanceOf(Women.class, womenInstance);
+    Assertions.assertNotEquals(womenFrom, womenInstance);
+
+    final Human manFrom = Human.create(Human.Sex.MALE);
+    final Human manInstance = Human.newManInstance();
+
+    Assertions.assertNotNull(manFrom);
+    Assertions.assertNotNull(manInstance);
+    Assertions.assertInstanceOf(Man.class, manFrom);
+    Assertions.assertInstanceOf(Man.class, manInstance);
+    Assertions.assertNotEquals(manFrom, manInstance);
+  }
+
+  @Test
   void testInstance() {
     final Human womenCreate = Human.create(Human.Sex.FEMALE);
     final Human womenInstance = Human.newWomenInstance();

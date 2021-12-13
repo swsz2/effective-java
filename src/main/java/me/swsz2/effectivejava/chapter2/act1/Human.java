@@ -7,6 +7,9 @@ package me.swsz2.effectivejava.chapter2.act1;
  */
 public abstract class Human {
 
+  public static Human WOMEN = new Women();
+  public static Human MAN = new Man();
+
   public enum Sex {
     MALE,
     FEMALE
@@ -28,7 +31,31 @@ public abstract class Human {
     throw new IllegalArgumentException("undefined sex :" + sex);
   }
 
-  /** @return new Man Instance */
+  /**
+   * @param sex sex
+   * @return Man or Women Instance
+   */
+  public static Human from(final Human.Sex sex) {
+    switch (sex) {
+      case MALE:
+        return MAN;
+      case FEMALE:
+        return WOMEN;
+    }
+    throw new IllegalArgumentException("undefined sex :" + sex);
+  }
+
+  /** @return Women Instance */
+  public static Human getWomenInstance() {
+    return WOMEN;
+  }
+
+  /** @return Man Instance */
+  public static Human getManInstance() {
+    return MAN;
+  }
+
+  /** @return new Women Instance */
   public static Human newWomenInstance() {
     return new Women();
   }
