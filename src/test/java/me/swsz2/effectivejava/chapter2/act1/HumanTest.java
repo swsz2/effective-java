@@ -27,7 +27,7 @@ class HumanTest {
   }
 
   @Test
-  void testFrom() {
+  void testInstance() {
 
     final Human womenFrom = Human.create(Human.Sex.FEMALE);
     final Human womenInstance = Human.getWomenInstance();
@@ -49,7 +49,7 @@ class HumanTest {
   }
 
   @Test
-  void testInstance() {
+  void testNewInstance() {
 
     final Human womenCreate = Human.create(Human.Sex.FEMALE);
     final Human womenInstance = Human.newWomenInstance();
