@@ -12,7 +12,7 @@ public class OperatingSystemProperties {
   /** prevents singleton creation by reflection. */
   private OperatingSystemProperties() {
     if (INSTANCE != null) {
-      throw new InstantiationError("already created OperatingSystemProperties");
+      throw new AssertionError("already created OperatingSystemProperties");
     }
   }
 

@@ -14,7 +14,7 @@ public class OperatingSystemProperties2 implements Serializable {
   /** prevents singleton creation by reflection. */
   private OperatingSystemProperties2() {
     if (INSTANCE != null) {
-      throw new InstantiationError("already created OperatingSystemProperties2");
+      throw new AssertionError("already created OperatingSystemProperties2");
     }
   }
 

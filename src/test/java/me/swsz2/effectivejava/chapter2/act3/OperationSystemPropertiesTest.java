@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
+import java.nio.file.Files;
 
 /**
  * @author : swsz2
@@ -19,7 +20,7 @@ public class OperationSystemPropertiesTest {
     Constructor<?>[] constructors = OperatingSystemProperties.class.getDeclaredConstructors();
     for (Constructor<?> constructor : constructors) {
       constructor.setAccessible(true);
-      Assertions.assertThrows(InstantiationError.class, constructor::newInstance);
+      Assertions.assertThrows(AssertionError.class, constructor::newInstance);
     }
   }
 
@@ -27,16 +28,15 @@ public class OperationSystemPropertiesTest {
   public void testOperationSystemProperties2() throws IOException, ClassNotFoundException {
 
     final int hashCode = OperatingSystemProperties2.getInstance().hashCode();
+    final File serialized = new File("serialized");
 
     // serialize
-    try (final FileOutputStream fileOutputStream =
-            new FileOutputStream("OperationSystemProperties2.ser");
+    try (final FileOutputStream fileOutputStream = new FileOutputStream(serialized);
         final ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
       objectOutputStream.writeObject(OperatingSystemProperties2.getInstance());
 
       // deserialize
-      try (final FileInputStream fileInputStream =
-              new FileInputStream("OperationSystemProperties2.ser");
+      try (final FileInputStream fileInputStream = new FileInputStream(serialized);
           final ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
 
         // then
@@ -47,6 +47,8 @@ public class OperationSystemPropertiesTest {
           Actual   :1233705144
         */
       }
+    } finally {
+      Files.delete(serialized.toPath());
     }
   }
 }
