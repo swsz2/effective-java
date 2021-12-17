@@ -26,4 +26,3 @@
 
 ### 열거 (Enum) 타입  (OperatingSystemProperties3.java)
     - 확실히 간결하다.
-    - 그런데 객체 요소가 생기면 사용성과 가독성이 매우 떨어질 거 같다.
