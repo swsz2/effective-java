@@ -11,16 +11,24 @@ import org.junit.jupiter.api.Test;
 public class CardReaderTest {
 
   @Test
-  void testSamsungCardReaderWithSamsungCard() {
-    SamsungCardReader cardReader = new SamsungCardReader();
-    SamsungCard card = new SamsungCard("sungwonkim", "2020-2021-2022");
-    Assertions.assertDoesNotThrow(() -> cardReader.read(card));
+  void testSamsungCardReaderModule() {
+    SamsungCardReadModule samsungCardReadModule = new SamsungCardReadModule();
+    CardReader cardReader = new CardReader(samsungCardReadModule);
+    Card samsungCard = new SamsungCard("sungwonkim", "2020-2021-2022");
+    Card appleCard = new AppleCard("sungwonkim", "2020-2021-2022");
+
+    Assertions.assertDoesNotThrow(() -> cardReader.read(samsungCard));
+    Assertions.assertThrows(UnsupportedCardTypeException.class, () -> cardReader.read(appleCard));
   }
 
   @Test
-  void testSamsungCardReaderWithKakaoCard() {
-    SamsungCardReader cardReader = new SamsungCardReader();
-    KakaoCard card = new KakaoCard("sungwonkim", "2020-2021-2022");
-    Assertions.assertThrows(UnsupportedCardTypeException.class, () -> cardReader.read(card));
+  void testAppleCardReaderModule() {
+    AppleCardReadModule appleCardReadModule = new AppleCardReadModule();
+    CardReader cardReader = new CardReader(appleCardReadModule);
+    Card samsungCard = new SamsungCard("sungwonkim", "2020-2021-2022");
+    Card appleCard = new AppleCard("sungwonkim", "2020-2021-2022");
+
+    Assertions.assertDoesNotThrow(() -> cardReader.read(appleCard));
+    Assertions.assertThrows(UnsupportedCardTypeException.class, () -> cardReader.read(samsungCard));
   }
 }
